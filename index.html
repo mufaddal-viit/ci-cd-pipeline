@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CI/CD</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background: #f2f2f2;
+      }
+
+      .carousel {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .slides {
+        display: flex;
+        height: 100%;
+        animation: scroll-left 460s linear infinite;
+      }
+
+      .slide {
+        width: 600px;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        flex-shrink: 0;
+      }
+      .above {
+        margin: 20px;
+        position: absolute;
+        z-index: 100;
+        top: 0;
+      }
+
+      @keyframes scroll-left {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-2400px); /* 4 slides x 600px each */
+        }
+      }
+
+      .sli {
+        background-color: antiquewhite;
+        width: fit-content;
+        border-radius: 10px;
+        font-style: italic;
+        padding: 2px 8px;
+        margin-bottom: 5px;
+        padding-left: 20px;
+        font-size: large;
+        font-weight: 700;
+        list-style-type: "💫";
+      }
+    </style>
+  </head>
+  <body>
+    <div class="carousel">
+      <div class="slides" id="slides">
+        <!-- Slides will be injected here -->
+      </div>
+      <div class="above">
+        <h1>Hello</h1>
+        <div>
+          <p>This is my second portfolio website using js</p>
+          <div class="left-container">
+            <p>My skills includes</p>
+            <ul id="ul" style="list-style-position: outside">
+              <script>
+                ul = document.getElementById("ul");
+                ["javascript", "html", "react js", "Mysql"].map((x) => {
+                  let sli = document.createElement("li");
+                  sli.classList.add("sli");
+                  sli.innerText = x.toUpperCase();
+                  ul.appendChild(sli);
+                });
+              </script>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const images = [
+        "https://plus.unsplash.com/premium_photo-1700558685040-a75735b86bb7?w=800&auto=format&fit=crop&q=60",
+        "https://images.unsplash.com/photo-1755997234962-931d86bee287?w=900&auto=format&fit=crop&q=60",
+        "https://images.unsplash.com/photo-1542223616-9f77283c0b95?w=900&auto=format&fit=crop&q=60",
+        "https://images.unsplash.com/photo-1505691723518-36a5ac3be353?w=900&auto=format&fit=crop&q=60",
+      ];
+
+      const slidesContainer = document.getElementById("slides");
+
+      // Duplicate the images for seamless loop
+      const totalImages = [...images, ...images]; // Duplicate for infinite loop
+
+      totalImages.forEach((img) => {
+        const slide = document.createElement("div");
+        slide.className = "slide";
+        slide.style.backgroundImage = `url('${img}')`;
+        slidesContainer.appendChild(slide);
+      });
+    </script>
+  </body>
+</html>
